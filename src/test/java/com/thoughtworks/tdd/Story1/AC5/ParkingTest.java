@@ -104,4 +104,15 @@ public class ParkingTest {
         //then
         Assertions.assertNull(ticket);
     }
+    @Test
+    public void should_failed_when_pass_null_car_to_parking_boy(){
+        //given
+        ParkingBoy parkingBoy = new ParkingBoy();
+        Car car = null;
+        ParkingLot parkingLot = new ParkingLot();
+        //when+then
+        Assertions.assertThrows(RuntimeException.class, () ->{
+            parkingBoy.park(parkingLot,car);
+        });
+    }
 }

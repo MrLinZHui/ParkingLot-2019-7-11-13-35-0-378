@@ -20,6 +20,9 @@ public class ParkingLot {
     }
 
     public Ticket park(Car car) {
+        if(car ==null){
+          throw  new RuntimeException();
+        }
         if(actualcapacity<capacity) {
             Ticket ticket = new Ticket();
             carMap.put(ticket.getTicketnum(), car);
