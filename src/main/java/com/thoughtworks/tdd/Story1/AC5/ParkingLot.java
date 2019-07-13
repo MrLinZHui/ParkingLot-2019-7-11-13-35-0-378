@@ -23,10 +23,14 @@ public class ParkingLot {
         if(car ==null){
           throw  new RuntimeException();
         }
+        if(!car.isCarparkstatus()){
+            throw  new RuntimeException();
+        }
         if(actualcapacity<capacity) {
             Ticket ticket = new Ticket();
             carMap.put(ticket.getTicketnum(), car);
             actualcapacity++;
+            car.setCarparkstatus(false);
             return ticket;
         }
         return null;

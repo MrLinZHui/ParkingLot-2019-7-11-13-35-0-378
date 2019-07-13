@@ -115,4 +115,16 @@ public class ParkingTest {
             parkingBoy.park(parkingLot,car);
         });
     }
+    @Test
+    public void should_failed_when_pass_a_passed_car_to_parking_boy(){
+        //given
+        ParkingBoy parkingBoy = new ParkingBoy();
+        Car car = new Car("粤B 666666");
+        ParkingLot parkingLot = new ParkingLot();
+        parkingBoy.park(parkingLot,car);
+        //when+then
+        Assertions.assertThrows(RuntimeException.class, () ->{
+            parkingBoy.park(parkingLot,car);
+        });
+    }
 }
