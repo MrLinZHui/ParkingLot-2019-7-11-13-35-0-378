@@ -33,7 +33,7 @@ public class ParkingLot {
             car.setCarparkstatus(false);
             return ticket;
         }
-        System.out.print( "Not enough position.\n");
+
         return null;
     }
 

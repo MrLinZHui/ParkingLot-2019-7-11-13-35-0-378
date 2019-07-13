@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Assertions;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 //import static org.fest.assertions.api.Assertions.assertThat;
@@ -21,8 +23,10 @@ public class ParkingTest {
         ParkingBoy parkingBoy = new ParkingBoy();
         Car car = new Car("粤B 888888");
         ParkingLot parkingLot = new ParkingLot();
+        ArrayList<ParkingLot> arrayList = new ArrayList<>();
+        arrayList.add(parkingLot);
         //when
-        Ticket ticket = parkingBoy.park(parkingLot,car);
+        Ticket ticket = parkingBoy.park(arrayList,car);
         //then
         Assertions.assertNotNull(ticket);
     }
@@ -33,9 +37,11 @@ public class ParkingTest {
         Car car = new Car("粤B 888888");
         Car car1 = new Car("粤B 888888");
         ParkingLot parkingLot = new ParkingLot();
+        ArrayList<ParkingLot> arrayList = new ArrayList<>();
+        arrayList.add(parkingLot);
         //when
-        Ticket ticket = parkingBoy.park(parkingLot,car);
-        Ticket ticket1 = parkingBoy.park(parkingLot,car1);
+        Ticket ticket = parkingBoy.park(arrayList,car);
+        Ticket ticket1 = parkingBoy.park(arrayList,car1);
         //then
         Assertions.assertEquals(2,parkingLot.getCarMap().size());
         // Assertions.assertNotNull(ticket.ticketnum);
@@ -109,8 +115,10 @@ public class ParkingTest {
         Car car = new Car("粤B 66666");
         ParkingLot parkingLot = new ParkingLot();
         parkingLot.setActualcapacity(10);
+        ArrayList<ParkingLot> arrayList = new ArrayList<>();
+        arrayList.add(parkingLot);
         //when
-        Ticket ticket = parkingBoy.park(parkingLot,car);
+        Ticket ticket = parkingBoy.park(arrayList,car);
         //then
         Assertions.assertNull(ticket);
     }
@@ -120,9 +128,11 @@ public class ParkingTest {
         ParkingBoy parkingBoy = new ParkingBoy();
         Car car = null;
         ParkingLot parkingLot = new ParkingLot();
+        ArrayList<ParkingLot> arrayList = new ArrayList<>();
+        arrayList.add(parkingLot);
         //when+then
         Assertions.assertThrows(RuntimeException.class, () ->{
-            parkingBoy.park(parkingLot,car);
+            parkingBoy.park(arrayList,car);
         });
     }
     @Test
@@ -131,10 +141,12 @@ public class ParkingTest {
         ParkingBoy parkingBoy = new ParkingBoy();
         Car car = new Car("粤B 666666");
         ParkingLot parkingLot = new ParkingLot();
-        parkingBoy.park(parkingLot,car);
+        ArrayList<ParkingLot> arrayList = new ArrayList<>();
+        arrayList.add(parkingLot);
+        parkingBoy.park(arrayList,car);
         //when+then
         Assertions.assertThrows(RuntimeException.class, () ->{
-            parkingBoy.park(parkingLot,car);
+            parkingBoy.park(arrayList,car);
         });
     }
     @Test
@@ -167,12 +179,31 @@ public class ParkingTest {
         //given
         ParkingBoy parkingBoy = new ParkingBoy();
         Car car = new Car("粤B 66666");
+        ArrayList<ParkingLot> arrayList = new ArrayList<>();
         ParkingLot parkingLot = new ParkingLot();
         parkingLot.setActualcapacity(10);
+        arrayList.add(parkingLot);
         //when
-        parkingBoy.park(parkingLot,car);
+        parkingBoy.park(arrayList,car);
         //then
         Assertions.assertEquals( "Not enough position.\n",systemOut());
+    }
+    @Test
+    public void should_park_second_when_fisrt_capacity_is_full(){
+        //given
+        ParkingBoy parkingBoy = new ParkingBoy();
+        Car car = new Car("粤B 66666");
+        ParkingLot parkingLot = new ParkingLot();
+        parkingLot.setActualcapacity(10);
+        ParkingLot parkingLot1 = new ParkingLot();
+        ArrayList<ParkingLot> arrayList = new ArrayList<>();
+        arrayList.add(parkingLot);
+        arrayList.add(parkingLot1);
+        //when
+        Ticket ticket = parkingBoy.park(arrayList,car);
+        //then
+       // Assertions.assertEquals( "Not enough position.\n",systemOut());
+        Assertions.assertNotNull(ticket);
     }
 
     private String systemOut() {

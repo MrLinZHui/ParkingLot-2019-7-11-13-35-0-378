@@ -1,8 +1,26 @@
 package com.thoughtworks.tdd.Story2.AC3;
 
+import java.util.ArrayList;
+
 public class ParkingBoy {
-    public Ticket park(ParkingLot parkingLot, Car car) {
-        return parkingLot.park(car);
+    public Ticket park(ArrayList<ParkingLot> arrayList, Car car) {
+//        arrayList.forEach(parkingLot ->{
+//            Ticket ticket =parkingLot.park(car);
+//            if(ticket!=null){
+//                return;
+//            }
+//        });
+        Ticket ticket  = null;
+        for(int i = 0;i<arrayList.size();i++){
+            ticket= arrayList.get(i).park(car);
+            if(ticket!=null){
+                break;
+            }
+        }
+        if(ticket==null){
+            System.out.print( "Not enough position.\n");
+        }
+        return ticket;
     }
 
     public Car getCar(ParkingLot parkingLot, Ticket ticket) {
