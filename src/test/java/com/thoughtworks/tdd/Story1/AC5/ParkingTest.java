@@ -9,7 +9,7 @@ public class ParkingTest {
     public void should_get_a_ticker_when_park_a_car(){
         //given
         ParkingBoy parkingBoy = new ParkingBoy();
-        Car car = new Car();
+        Car car = new Car("粤B 888888");
         ParkingLot parkingLot = new ParkingLot();
         //when
         Ticket ticket = parkingBoy.park(parkingLot,car);
@@ -20,8 +20,8 @@ public class ParkingTest {
     public void should_get_tickers_when_park_cars(){
         //given
         ParkingBoy parkingBoy = new ParkingBoy();
-        Car car = new Car();
-        Car car1 = new Car();
+        Car car = new Car("粤B 888888");
+        Car car1 = new Car("粤B 888888");
         ParkingLot parkingLot = new ParkingLot();
         //when
         Ticket ticket = parkingBoy.park(parkingLot,car);
