@@ -1,9 +1,5 @@
-package com.thoughtworks.tdd.Story1.AC3;
+package com.thoughtworks.tdd.Story1.AC4;
 
-import com.thoughtworks.tdd.Story1.AC4.Car;
-import com.thoughtworks.tdd.Story1.AC4.ParkingBoy;
-import com.thoughtworks.tdd.Story1.AC4.ParkingLot;
-import com.thoughtworks.tdd.Story1.AC4.Ticket;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -81,5 +77,20 @@ public class ParkingTest {
         //then
         Assertions.assertNull(car);
     }
-
+    @Test
+    public void should_get_null_car_when_give_used_ticket(){
+        //given
+        HashMap<String, Car> hashMap = new HashMap<>();
+        hashMap.put("num:1",new Car("粤B 99800"));
+        hashMap.put("num:2",new Car("粤C 88888"));
+        ParkingBoy parkingBoy = new ParkingBoy();
+        Ticket ticket = new Ticket("num:2");
+        ticket.setStatus(false);
+        ParkingLot parkingLot = new ParkingLot();
+        parkingLot.setCarMap(hashMap);
+        //when
+        Car car = parkingBoy.getCar(parkingLot,ticket);
+        //then
+        Assertions.assertNull(car);;
+    }
 }

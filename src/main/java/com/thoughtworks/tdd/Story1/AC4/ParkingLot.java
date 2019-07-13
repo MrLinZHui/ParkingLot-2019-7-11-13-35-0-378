@@ -1,4 +1,4 @@
-package com.thoughtworks.tdd.Story1.AC3;
+package com.thoughtworks.tdd.Story1.AC4;
 
 import java.util.HashMap;
 
@@ -15,7 +15,7 @@ public class ParkingLot {
     }
 
     public Car getCar(Ticket ticket) {
-        if(ticket==null||!carMap.containsKey(ticket.getTicketnum())){
+        if(ticket==null||!carMap.containsKey(ticket.getTicketnum())||!ticket.isStatus()){
             return null;
         }
         Car car = carMap.get(ticket.getTicketnum());
