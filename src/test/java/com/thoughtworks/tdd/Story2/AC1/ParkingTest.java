@@ -136,21 +136,44 @@ public class ParkingTest {
         });
     }
     @Test
-    public void should_response_message_when_give_a_wrong_ticket(){
+    public void should_response_message_when_give_a_used_ticket(){
         //given
+        Customer customer = new Customer( new Ticket("num:2"));
         ParkingBoy parkingBoy = new ParkingBoy();
-        Ticket ticket = new Ticket("num:2");
-        ticket.setStatus(false);
+        customer.getTicket().setStatus(false);
         ParkingLot parkingLot = new ParkingLot();
-       // parkingLot.setCarMap(hashMap);
         //when
-        parkingBoy.recognizedticket(ticket);
-
-//        Car car = parkingBoy.getCar(parkingLot,ticket);
+        parkingBoy.recognizedticket(customer.getTicket());
 //        //then
         Assertions.assertEquals( "Unrecognized parking ticket.\n",systemOut());
 //        Assertions.assertEquals("粤C 88888",car.getCarNum());
     }
+    @Test
+    public void should_response_message_when_do_not_give_a_ticket(){
+        //given
+        Customer customer = new Customer(null);
+        ParkingBoy parkingBoy = new ParkingBoy();
+        ParkingLot parkingLot = new ParkingLot();
+        //when
+        parkingBoy.recognizedticket(customer.getTicket());
+//        //then
+        Assertions.assertEquals( "Please provide your parking ticket.\n",systemOut());
+//        Assertions.assertEquals("粤C 88888",car.getCarNum());
+    }
+//    @Test
+//    public void should_response_message_when_don_not_give_a_ticket(){
+//        //given
+//        ParkingBoy parkingBoy = new ParkingBoy();
+//        ParkingLot parkingLot = new ParkingLot();
+//       // parkingLot.setCarMap(hashMap);
+//        //when
+//        parkingBoy.recognizedticket(null);
+//
+////        Car car = parkingBoy.getCar(parkingLot,ticket);
+////        //then
+//        Assertions.assertEquals( "Please provide your parking ticket.\n",systemOut());
+////        Assertions.assertEquals("粤C 88888",car.getCarNum());
+//    }
     private String systemOut() {
         return outContent.toString();
     }

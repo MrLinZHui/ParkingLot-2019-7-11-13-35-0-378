@@ -10,7 +10,10 @@ public class ParkingBoy {
     }
 
     public void recognizedticket(Ticket ticket) {
-        if(!ticket.isStatus()){
+        if(ticket==null){
+            System.out.print("Please provide your parking ticket.\n");
+        }
+        else if(!ticket.isStatus()){
             System.out.print("Unrecognized parking ticket.\n");
         }
     }
