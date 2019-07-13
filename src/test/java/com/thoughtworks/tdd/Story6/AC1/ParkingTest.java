@@ -340,6 +340,45 @@ public class ParkingTest {
         // Assertions.assertEquals( "Not enough position.\n",systemOut());
         Assertions.assertNull(ticket);
     }
+    @Test
+    public void should_manage_fetch_car_when_parkingboy_is_manage_this(){
+        //given
+        ParkingLot parkingLot = new ParkingLot(10,1,"Lot1");
+        ParkingLot parkingLot1 = new ParkingLot(10,1,"Lot2");
+        ArrayList<ParkingLot> parkingLotArrayList = new ArrayList<>();
+        Car car = new Car("粤B 66666");
+        Ticket ticket = new Ticket("num:1");
+        parkingLot.getCarMap().put(ticket.getTicketnum(),car);
+        parkingLotArrayList.add(parkingLot);
+        parkingLotArrayList.add(parkingLot1);
+        ParkingManager parkingManager = new ParkingManager();
+        parkingManager.setParkingLotArrayList(parkingLotArrayList);
+        //when
+        Car car1  = parkingManager.getCar(parkingLot,ticket);
+        //then
+        // Assertions.assertEquals( "Not enough position.\n",systemOut());
+        Assertions.assertEquals(car,car1);
+    }
+    @Test
+    public void should_manage_get_null_when_manage_fetch_car_not_in_this(){
+        //given
+        ParkingLot parkingLot = new ParkingLot(10,1,"Lot1");
+        ParkingLot parkingLot1 = new ParkingLot(10,1,"Lot2");
+        ParkingLot parkingLot2 = new ParkingLot(10,1,"Lot3");
+        ArrayList<ParkingLot> parkingLotArrayList = new ArrayList<>();
+        Car car = new Car("粤B 66666");
+        Ticket ticket = new Ticket("num:1");
+        parkingLot.getCarMap().put(ticket.getTicketnum(),car);
+        parkingLotArrayList.add(parkingLot);
+        parkingLotArrayList.add(parkingLot1);
+        ParkingManager parkingManager = new ParkingManager();
+        parkingManager.setParkingLotArrayList(parkingLotArrayList);
+        //when
+        Car car1  = parkingManager.getCar(parkingLot2,ticket);
+        //then
+        // Assertions.assertEquals( "Not enough position.\n",systemOut());
+        Assertions.assertNull(car1);
+    }
     private String systemOut() {
         return outContent.toString();
     }
