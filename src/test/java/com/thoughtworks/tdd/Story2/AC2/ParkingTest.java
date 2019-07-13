@@ -1,13 +1,11 @@
-package com.thoughtworks.tdd.Story2.AC1;
-
+package com.thoughtworks.tdd.Story2.AC2;
 import org.junit.Before;
-import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.HashMap;
-
 //import static org.fest.assertions.api.Assertions.assertThat;
 public class ParkingTest {
     private ByteArrayOutputStream outContent = new ByteArrayOutputStream();

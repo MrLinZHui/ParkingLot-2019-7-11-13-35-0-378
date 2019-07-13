@@ -1,4 +1,4 @@
-package com.thoughtworks.tdd.Story2.AC1;
+package com.thoughtworks.tdd.Story2.AC3;
 
 import org.junit.Before;
 import org.junit.Test;
