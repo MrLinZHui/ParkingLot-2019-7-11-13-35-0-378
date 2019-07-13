@@ -174,6 +174,19 @@ public class ParkingTest {
 //        Assertions.assertEquals( "Please provide your parking ticket.\n",systemOut());
 ////        Assertions.assertEquals("粤C 88888",car.getCarNum());
 //    }
+    @Test
+    public void should_response_message__when_capacity_is_full(){
+        //given
+        ParkingBoy parkingBoy = new ParkingBoy();
+        Car car = new Car("粤B 66666");
+        ParkingLot parkingLot = new ParkingLot();
+        parkingLot.setActualcapacity(10);
+        //when
+        parkingBoy.park(parkingLot,car);
+        //then
+        Assertions.assertEquals( "Not enough position.\n",systemOut());
+    }
+
     private String systemOut() {
         return outContent.toString();
     }
