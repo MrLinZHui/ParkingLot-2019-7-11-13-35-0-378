@@ -30,4 +30,8 @@ public class ParkingManager extends ParkingBoy{
     public void setParkingLotArrayList(ArrayList<ParkingLot> parkingLotArrayList) {
         this.parkingLotArrayList = parkingLotArrayList;
     }
+
+    public Ticket pointPark(ParkingBoy parkingBoy,Car car) {
+            return parkingBoy.park(parkingBoy.getParkingLotArrayList(),car);
+    }
 }

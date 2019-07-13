@@ -3,6 +3,20 @@ package com.thoughtworks.tdd.Story6.AC1;
 import java.util.ArrayList;
 
 public class ParkingBoy {
+    private ArrayList<ParkingLot> parkingLotArrayList;
+
+    public ParkingBoy() {
+        this.parkingLotArrayList = new ArrayList<>();
+    }
+
+    public ArrayList<ParkingLot> getParkingLotArrayList() {
+        return parkingLotArrayList;
+    }
+
+    public void setParkingLotArrayList(ArrayList<ParkingLot> parkingLotArrayList) {
+        this.parkingLotArrayList = parkingLotArrayList;
+    }
+
     public Ticket park(ArrayList<ParkingLot> arrayList, Car car) {
 //        arrayList.forEach(parkingLot ->{
 //            Ticket ticket =parkingLot.park(car);

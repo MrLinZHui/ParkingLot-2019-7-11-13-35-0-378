@@ -253,6 +253,27 @@ public class ParkingTest {
         // Assertions.assertEquals( "Not enough position.\n",systemOut());
         Assertions.assertEquals(2,parkingManager.getParkingBoyArrayList().size());
     }
+    @Test
+    public void should_manage_point_parkingboy_park_to_parkingLot_when_parkingboy_is_manage_this(){
+        //given
+        ParkingBoy parkingBoy = new ParkingBoy();
+        ParkingBoy parkingBoy1 = new ParkingBoy();
+        ParkingLot parkingLot = new ParkingLot(10,1,"Lot1");
+        ParkingLot parkingLot1 = new ParkingLot(10,1,"Lot2");
+        ArrayList<ParkingLot> parkingLotArrayList = new ArrayList<>();
+        parkingLotArrayList.add(parkingLot);
+        parkingLotArrayList.add(parkingLot1);
+        parkingBoy.setParkingLotArrayList(parkingLotArrayList);
+        ParkingManager parkingManager = new ParkingManager();
+        Car car = new Car("粤B 66666");
+        //when
+        parkingManager.addParkingBoy(parkingBoy);
+        parkingManager.addParkingBoy(parkingBoy1);
+        //then
+        Ticket ticket = parkingManager.pointPark(parkingBoy,car);
+        // Assertions.assertEquals( "Not enough position.\n",systemOut());
+        Assertions.assertNotNull(ticket);
+    }
 
     private String systemOut() {
         return outContent.toString();
