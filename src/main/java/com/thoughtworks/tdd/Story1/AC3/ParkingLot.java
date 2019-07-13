@@ -1,11 +1,9 @@
-package com.thoughtworks.tdd.Story1.AC2;
+package com.thoughtworks.tdd.Story1.AC3;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 public class ParkingLot {
-    private HashMap<String,Car> carMap;
+    private HashMap<String, Car> carMap;
     public ParkingLot() {
         carMap = new HashMap<>();
     }
@@ -17,12 +15,15 @@ public class ParkingLot {
     }
 
     public Car getCar(Ticket ticket) {
+        if(!carMap.containsKey(ticket.getTicketnum())){
+            return null;
+        }
         Car car = carMap.get(ticket.getTicketnum());
         carMap.remove(ticket.getTicketnum());
         return car;
     }
 
-    public HashMap<String ,Car> getCarMap() {
+    public HashMap<String , Car> getCarMap() {
         return carMap;
     }
 
