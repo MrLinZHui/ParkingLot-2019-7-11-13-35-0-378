@@ -1,7 +1,7 @@
-package com.thoughtworks.tdd;
+package com.thoughtworks.tdd.Story1.AC2;
 
 public class ParkingLot {
-    public Ticket getTicket(Car car) {
+    public Ticket park(Car car) {
         return new Ticket();
     }
 
