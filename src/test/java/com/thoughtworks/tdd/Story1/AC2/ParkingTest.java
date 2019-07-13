@@ -26,4 +26,16 @@ public class ParkingTest {
         //then
         Assertions.assertNotNull(car);
     }
+    @Test
+    public void should_get_a_number_ticker_when_park_a_car(){
+        //given
+        ParkingBoy parkingBoy = new ParkingBoy();
+        Car car = new Car();
+        ParkingLot parkingLot = new ParkingLot();
+        //when
+        Ticket ticket = parkingBoy.park(parkingLot,car);
+        //then
+        Assertions.assertNotNull(ticket.ticketnum);
+    }
+
 }
