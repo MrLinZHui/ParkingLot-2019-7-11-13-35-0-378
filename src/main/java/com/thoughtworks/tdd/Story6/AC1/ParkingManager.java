@@ -34,4 +34,18 @@ public class ParkingManager extends ParkingBoy{
     public Ticket pointPark(ParkingBoy parkingBoy,Car car) {
             return parkingBoy.park(parkingBoy.getParkingLotArrayList(),car);
     }
+
+    public Car pointFetch(ParkingBoy parkingBoy, Ticket ticket) {
+        ParkingLot parkingLot = null;
+        for(int i = 0;i<parkingBoy.getParkingLotArrayList().size();i++){
+            parkingLot= parkingBoy.getParkingLotArrayList().get(i);
+            if(parkingLot.getCarMap().containsKey(ticket.getTicketnum())){
+                break;
+            }
+        }
+        if(parkingLot!=null){
+            return parkingBoy.getCar(parkingLot,ticket);
+        }
+        return null;
+    }
 }

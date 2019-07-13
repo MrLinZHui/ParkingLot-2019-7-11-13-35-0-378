@@ -1,5 +1,6 @@
 package com.thoughtworks.tdd.Story6.AC1;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ParkingLot {
@@ -7,7 +8,7 @@ public class ParkingLot {
     private HashMap<String, Car> carMap;
     private int capacity;
     private int actualcapacity;
-
+    private ArrayList<Ticket> ticketArrayList = new ArrayList<>();
     public int getActualcapacity() {
         return actualcapacity;
     }
@@ -39,6 +40,7 @@ public class ParkingLot {
             carMap.put(ticket.getTicketnum(), car);
             actualcapacity++;
             car.setCarparkstatus(false);
+            ticketArrayList.add(ticket);
             return ticket;
         }
 
@@ -77,5 +79,13 @@ public class ParkingLot {
 
     public void setCapacity(int capacity) {
         this.capacity = capacity;
+    }
+
+    public ArrayList<Ticket> getTicketArrayList() {
+        return ticketArrayList;
+    }
+
+    public void setTicketArrayList(ArrayList<Ticket> ticketArrayList) {
+        this.ticketArrayList = ticketArrayList;
     }
 }

@@ -274,6 +274,29 @@ public class ParkingTest {
         // Assertions.assertEquals( "Not enough position.\n",systemOut());
         Assertions.assertNotNull(ticket);
     }
+    @Test
+    public void should_manage_point_parkingboy_fetch_to_parkingLot_when_parkingboy_is_manage_this(){
+        //given
+        ParkingBoy parkingBoy = new ParkingBoy();
+        ParkingBoy parkingBoy1 = new ParkingBoy();
+        ParkingLot parkingLot = new ParkingLot(10,1,"Lot1");
+        ParkingLot parkingLot1 = new ParkingLot(10,1,"Lot2");
+        ArrayList<ParkingLot> parkingLotArrayList = new ArrayList<>();
+        parkingLotArrayList.add(parkingLot);
+        parkingLotArrayList.add(parkingLot1);
+        parkingBoy.setParkingLotArrayList(parkingLotArrayList);
+        ParkingManager parkingManager = new ParkingManager();
+        Ticket ticket = new Ticket("num:1");
+        Car car = new Car("粤B 66666");
+        parkingLot.getCarMap().put(ticket.getTicketnum(),car);
+        //when
+        parkingManager.addParkingBoy(parkingBoy);
+        parkingManager.addParkingBoy(parkingBoy1);
+        //then
+        Car car1 = parkingManager.pointFetch(parkingBoy,ticket);
+        // Assertions.assertEquals( "Not enough position.\n",systemOut());
+        Assertions.assertEquals(car,car1);
+    }
 
     private String systemOut() {
         return outContent.toString();
