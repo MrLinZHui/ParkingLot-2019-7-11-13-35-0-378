@@ -15,4 +15,15 @@ public class ParkingTest {
         //then
         Assertions.assertNotNull(ticket);
     }
+    @Test
+    public void should_get_car_when_git_a_car(){
+        //given
+        ParkingBoy parkingBoy = new ParkingBoy();
+        Ticket ticket = new Ticket();
+        ParkingLot parkingLot = new ParkingLot();
+        //when
+        Car car = parkingBoy.getCar(parkingLot,ticket);
+        //then
+        Assertions.assertNotNull(car);
+    }
 }
