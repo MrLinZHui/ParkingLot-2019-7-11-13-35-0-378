@@ -379,6 +379,23 @@ public class ParkingTest {
         // Assertions.assertEquals( "Not enough position.\n",systemOut());
         Assertions.assertNull(car1);
     }
+    @Test
+    public void should_response_message__when_massager_act_parkingBoyt_to_park_and_capacity_is_full(){
+        //given
+        ParkingLot parkingLot = new ParkingLot(10,10,"Lot1");
+        ParkingLot parkingLot1 = new ParkingLot(10,10,"Lot2");
+        ArrayList<ParkingLot> parkingLotArrayList = new ArrayList<>();
+        Car car = new Car("粤B 66666");
+        parkingLotArrayList.add(parkingLot);
+        parkingLotArrayList.add(parkingLot1);
+        ParkingManager parkingManager = new ParkingManager();
+        ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.setParkingLotArrayList(parkingLotArrayList);
+        //when
+        parkingManager.pointPark(parkingBoy,car);
+        //then
+        Assertions.assertEquals( "Not enough position.\n",systemOut());
+    }
     private String systemOut() {
         return outContent.toString();
     }
