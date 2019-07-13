@@ -297,7 +297,49 @@ public class ParkingTest {
         // Assertions.assertEquals( "Not enough position.\n",systemOut());
         Assertions.assertEquals(car,car1);
     }
+    @Test
+    public void should_manage_park_car_when_parkingboy_is_manage_this(){
+        //given
+        ParkingLot parkingLot = new ParkingLot(10,1,"Lot1");
+        ParkingLot parkingLot1 = new ParkingLot(10,1,"Lot2");
+        ArrayList<ParkingLot> parkingLotArrayList = new ArrayList<>();
+        parkingLotArrayList.add(parkingLot);
+        parkingLotArrayList.add(parkingLot1);
+        ParkingManager parkingManager = new ParkingManager();
+        parkingManager.setParkingLotArrayList(parkingLotArrayList);
+       // Ticket ticket = new Ticket("num:1");
+        Car car = new Car("粤B 66666");
+        //when
+        Ticket ticket = parkingManager.park(parkingLotArrayList,car);
+        //then
+        // Assertions.assertEquals( "Not enough position.\n",systemOut());
+        Assertions.assertNotNull(ticket);
+    }
+    @Test
+    public void should_get_null_when__manager_does_not_park_in_his(){
+        //given
+        ParkingLot parkingLot = new ParkingLot(10,1,"Lot1");
+        ParkingLot parkingLot1 = new ParkingLot(10,1,"Lot2");
 
+        ParkingLot parkingLot2 = new ParkingLot(10,1,"Lot3");
+        ParkingLot parkingLot3 = new ParkingLot(10,1,"Lot4");
+        ArrayList<ParkingLot> parkingLotArrayList = new ArrayList<>();
+        ArrayList<ParkingLot> parkingLotArrayList1 = new ArrayList<>();
+        parkingLotArrayList.add(parkingLot);
+        parkingLotArrayList.add(parkingLot1);
+
+        parkingLotArrayList1.add(parkingLot2);
+        parkingLotArrayList1.add(parkingLot3);
+        ParkingManager parkingManager = new ParkingManager();
+        parkingManager.setParkingLotArrayList(parkingLotArrayList);
+       // Ticket ticket = new Ticket("num:1");
+        Car car = new Car("粤B 66666");
+        //when
+        Ticket ticket = parkingManager.park(parkingLotArrayList1,car);
+        //then
+        // Assertions.assertEquals( "Not enough position.\n",systemOut());
+        Assertions.assertNull(ticket);
+    }
     private String systemOut() {
         return outContent.toString();
     }

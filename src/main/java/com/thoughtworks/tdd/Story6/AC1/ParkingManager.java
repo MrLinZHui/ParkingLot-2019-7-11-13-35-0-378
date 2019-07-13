@@ -31,7 +31,15 @@ public class ParkingManager extends ParkingBoy{
         this.parkingLotArrayList = parkingLotArrayList;
     }
 
-    public Ticket pointPark(ParkingBoy parkingBoy,Car car) {
+    @Override
+    public Ticket park(ArrayList<ParkingLot> arrayList, Car car) {
+        if(!arrayList.equals(this.getParkingLotArrayList())){
+            return null;
+        }
+        return super.park(arrayList, car);
+    }
+
+    public Ticket pointPark(ParkingBoy parkingBoy, Car car) {
             return parkingBoy.park(parkingBoy.getParkingLotArrayList(),car);
     }
 
