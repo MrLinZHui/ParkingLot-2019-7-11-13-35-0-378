@@ -15,7 +15,7 @@ public class ParkingLot {
     }
 
     public Car getCar(Ticket ticket) {
-        if(!carMap.containsKey(ticket.getTicketnum())){
+        if(ticket==null||!carMap.containsKey(ticket.getTicketnum())){
             return null;
         }
         Car car = carMap.get(ticket.getTicketnum());

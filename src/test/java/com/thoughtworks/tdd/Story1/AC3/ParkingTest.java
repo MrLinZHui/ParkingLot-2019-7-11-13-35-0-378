@@ -63,5 +63,20 @@ public class ParkingTest {
         //then
         Assertions.assertNull(car);
     }
+    @Test
+    public void should_get_null_car_when_give_null(){
+        //given
+        HashMap<String, Car> hashMap = new HashMap<>();
+        hashMap.put("num:1",new Car("粤B 99800"));
+        hashMap.put("num:2",new Car("粤C 88888"));
+        ParkingBoy parkingBoy = new ParkingBoy();
+       // Ticket ticket = new Ticket("num:3");
+        ParkingLot parkingLot = new ParkingLot();
+        parkingLot.setCarMap(hashMap);
+        //when
+        Car car = parkingBoy.getCar(parkingLot,null);
+        //then
+        Assertions.assertNull(car);
+    }
 
 }
